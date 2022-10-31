@@ -1,0 +1,11 @@
+#!/bin/bash -l        
+#PBS -l walltime=4:00:00,nodes=1:ppn=1,mem=1gb 
+#PBS -m abe 
+#PBS -q small
+#PBS -N LJ_10_0.8
+ulimit -s unlimited
+cd $PBS_O_WORKDIR
+module load python
+module load mkl
+module load hdf5/hdf5-1.8.9-intel
+OMP_NUM_THREADS=1 stdbuf -oL python main.py > output.txt
